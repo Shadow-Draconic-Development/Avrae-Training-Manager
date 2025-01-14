@@ -76,129 +76,128 @@ If you do not have the `lang_dict` svar created, it will default to the below se
 
 |                      | Intelligence | Wisdom | Charisma |
 |:--------------------:|:------------:|:------:|:--------:|
-|        loxodan       |       X      |    X   |     X    |
-|       aarakocra      |       X      |    X   |     X    |
-|         artuk        |       X      |    X   |     X    |
-|      abanasinian     |       X      |    X   |     X    |
-|        abyssal       |       X      |    X   |     X    |
-|       angulotl       |       X      |    X   |     X    |
-|      ankeshelian     |       X      |    X   |     X    |
-|         aquan        |       X      |    X   |     X    |
-|         auran        |       X      |    X   |     X    |
-|       birdfolk       |       X      |    X   |     X    |
-|     black speech     |       X      |    X   |     X    |
-|       blink dog      |       X      |    X   |     X    |
-|        bothii        |       X      |    X   |     X    |
-|       bullywug       |       X      |    X   |     X    |
-|       celestial      |       X      |    X   |     X    |
-|        cervan        |       X      |    X   |     X    |
-|       citlanes       |       X      |    X   |     X    |
-| common sign language |       X      |    X   |     X    |
-|        daelkyr       |       X      |    X   |     X    |
-|        dalish        |       X      |    X   |     X    |
-|       darakhul       |       X      |    X   |     X    |
-|      deep speech     |       X      |    X   |     X    |
-|       demodand       |       X      |    X   |     X    |
-|         derro        |       X      |    X   |     X    |
-|       djaynaian      |       X      |    X   |     X    |
-|        dohwar        |       X      |    X   |     X    |
-|       draconic       |       X      |    X   |     X    |
-|        druidic       |       X      |    X   |     X    |
-|       dwarvish       |       X      |    X   |     X    |
-|        elvish        |       X      |    X   |     X    |
-|         eonic        |       X      |    X   |     X    |
-|         ergot        |       X      |    X   |     X    |
-|         erina        |       X      |    X   |     X    |
-|    feather speech    |       X      |    X   |     X    |
-|         giant        |       X      |    X   |     X    |
-|      giant eagle     |       X      |    X   |     X    |
-|       giant elk      |       X      |    X   |     X    |
-|       giant owl      |       X      |    X   |     X    |
-|         gith         |       X      |    X   |     X    |
-|         gnoll        |       X      |    X   |     X    |
-|        gnomish       |       X      |    X   |     X    |
-|        goblin        |       X      |    X   |     X    |
-|      godstongue      |       X      |    X   |     X    |
-|         grell        |       X      |    X   |     X    |
-|        grippli       |       X      |    X   |     X    |
-|         grung        |       X      |    X   |     X    |
-|        hadozee       |       X      |    X   |     X    |
-|       halfling       |       X      |    X   |     X    |
-|         halri        |       X      |    X   |     X    |
-|         hedge        |       X      |    X   |     X    |
-|      hook horror     |       X      |    X   |     X    |
-|    huginn's speech   |       X      |    X   |     X    |
-|       ice toad       |       X      |    X   |     X    |
-|         ignan        |       X      |    X   |     X    |
-|       infernal       |       X      |    X   |     X    |
-|       istarian       |       X      |    X   |     X    |
-|     ixitxachitil     |       X      |    X   |     X    |
-|        jerbeen       |       X      |    X   |     X    |
-|      kenderspeak     |       X      |    X   |     X    |
-|       kharolian      |       X      |    X   |     X    |
-|         khur         |       X      |    X   |     X    |
-|        kothian       |       X      |    X   |     X    |
-|         kraul        |       X      |    X   |     X    |
-|        kruthik       |       X      |    X   |     X    |
-|       kuran'zol      |       X      |    X   |     X    |
-|       lemurfolk      |       X      |    X   |     X    |
-|        leonin        |       X      |    X   |     X    |
-|        loxodon       |       X      |    X   |     X    |
-|        mapach        |       X      |    X   |     X    |
-|      marquesian      |       X      |    X   |     X    |
-|        maynah        |       X      |    X   |     X    |
-|       minotaur       |       X      |    X   |     X    |
-|        modron        |       X      |    X   |     X    |
-|       n'warian       |       X      |    X   |     X    |
-|         naush        |       X      |    X   |     X    |
-|       nerakese       |       X      |    X   |     X    |
-|       netherese      |       X      |    X   |     X    |
-|      nordmaarian     |       X      |    X   |     X    |
-|    northern tongue   |       X      |    X   |     X    |
-|         ogre         |       X      |    X   |     X    |
-|         olman        |       X      |    X   |     X    |
-|          orc         |       X      |    X   |     X    |
-|        orkish        |       X      |    X   |     X    |
-|        otyugh        |       X      |    X   |     X    |
-|      primordial      |       X      |    X   |     X    |
-|        quirapu       |       X      |    X   |     X    |
-|         quori        |       X      |    X   |     X    |
-|        riedran       |       X      |    X   |     X    |
-|       sahuagin       |       X      |    X   |     X    |
-|        sensan        |       X      |    X   |     X    |
-|        shankhi       |       X      |    X   |     X    |
-|       sindarin       |       X      |    X   |     X    |
-|     skitterwidget    |       X      |    X   |     X    |
-|         slaad        |       X      |    X   |     X    |
-|       solamnic       |       X      |    X   |     X    |
-|        sphinx        |       X      |    X   |     X    |
-|        sylvan        |       X      |    X   |     X    |
-|        terran        |       X      |    X   |     X    |
-|        thayan        |       X      |    X   |     X    |
-|     thieves' cant    |       X      |    X   |     X    |
-|      thri-kreen      |       X      |    X   |     X    |
-|     tletlahtolli     |       X      |    X   |     X    |
-|       tlincalli      |       X      |    X   |     X    |
-|        tosculi       |       X      |    X   |     X    |
-|      troglodyte      |       X      |    X   |     X    |
-|       trollkin       |       X      |    X   |     X    |
-|      umber hulk      |       X      |    X   |     X    |
-|        umbral        |       X      |    X   |     X    |
-|      undercommon     |       X      |    X   |     X    |
-|       vedalken       |       X      |    X   |     X    |
-|       vegepygmy      |       X      |    X   |     X    |
-|      void speech     |       X      |    X   |     X    |
-|        vulpin        |       X      |    X   |     X    |
-|      warg-speech     |       X      |    X   |     X    |
-|        westron       |       X      |    X   |     X    |
-|      winter wolf     |       X      |    X   |     X    |
-|         worg         |       X      |    X   |     X    |
-|        xingyu        |       X      |    X   |     X    |
-|         yeti         |       X      |    X   |     X    |
-|        yikaria       |       X      |    X   |     X    |
-|        zabaani       |       X      |    X   |     X    |
-|        zemnian       |       X      |    X   |     X    |
-|       ziklight       |       X      |    X   |     X    |
+|       Aarakocra      |       X      |    X   |     X    |
+|         Artuk        |       X      |    X   |     X    |
+|      Abanasinian     |       X      |    X   |     X    |
+|        Abyssal       |       X      |    X   |     X    |
+|       Angulotl       |       X      |    X   |     X    |
+|      Ankeshelian     |       X      |    X   |     X    |
+|         Aquan        |       X      |    X   |     X    |
+|         Auran        |       X      |    X   |     X    |
+|       Birdfolk       |       X      |    X   |     X    |
+|     Black Speech     |       X      |    X   |     X    |
+|       Blink Dog      |       X      |    X   |     X    |
+|        Bothii        |       X      |    X   |     X    |
+|       Bullywug       |       X      |    X   |     X    |
+|       Celestial      |       X      |    X   |     X    |
+|        Cervan        |       X      |    X   |     X    |
+|       Citlanes       |       X      |    X   |     X    |
+| Common Sign Language |       X      |    X   |     X    |
+|        Daelkyr       |       X      |    X   |     X    |
+|        Dalish        |       X      |    X   |     X    |
+|       Darakhul       |       X      |    X   |     X    |
+|      Deep Speech     |       X      |    X   |     X    |
+|       Demodand       |       X      |    X   |     X    |
+|         Derro        |       X      |    X   |     X    |
+|       Djaynaian      |       X      |    X   |     X    |
+|        Dohwar        |       X      |    X   |     X    |
+|       Draconic       |       X      |    X   |     X    |
+|        Druidic       |       X      |    X   |     X    |
+|       Dwarvish       |       X      |    X   |     X    |
+|        Elvish        |       X      |    X   |     X    |
+|         Eonic        |       X      |    X   |     X    |
+|         Ergot        |       X      |    X   |     X    |
+|         Erina        |       X      |    X   |     X    |
+|    Feather Speech    |       X      |    X   |     X    |
+|         Giant        |       X      |    X   |     X    |
+|      Giant Eagle     |       X      |    X   |     X    |
+|       Giant Elk      |       X      |    X   |     X    |
+|       Giant Owl      |       X      |    X   |     X    |
+|         Gith         |       X      |    X   |     X    |
+|         Gnoll        |       X      |    X   |     X    |
+|        Gnomish       |       X      |    X   |     X    |
+|        Goblin        |       X      |    X   |     X    |
+|      Godstongue      |       X      |    X   |     X    |
+|         Grell        |       X      |    X   |     X    |
+|        Grippli       |       X      |    X   |     X    |
+|         Grung        |       X      |    X   |     X    |
+|        Hadozee       |       X      |    X   |     X    |
+|       Halfling       |       X      |    X   |     X    |
+|         Halri        |       X      |    X   |     X    |
+|         Hedge        |       X      |    X   |     X    |
+|      Hook Horror     |       X      |    X   |     X    |
+|    Huginn's Speech   |       X      |    X   |     X    |
+|       Ice Toad       |       X      |    X   |     X    |
+|         Ignan        |       X      |    X   |     X    |
+|       Infernal       |       X      |    X   |     X    |
+|       Istarian       |       X      |    X   |     X    |
+|     Ixitxachitil     |       X      |    X   |     X    |
+|        Jerbeen       |       X      |    X   |     X    |
+|      Kenderspeak     |       X      |    X   |     X    |
+|       Kharolian      |       X      |    X   |     X    |
+|         Khur         |       X      |    X   |     X    |
+|        Kothian       |       X      |    X   |     X    |
+|         Kraul        |       X      |    X   |     X    |
+|        Kruthik       |       X      |    X   |     X    |
+|       Kuran'zol      |       X      |    X   |     X    |
+|       Lemurfolk      |       X      |    X   |     X    |
+|        Leonin        |       X      |    X   |     X    |
+|        Loxodon       |       X      |    X   |     X    |
+|        Mapach        |       X      |    X   |     X    |
+|      Marquesian      |       X      |    X   |     X    |
+|        Maynah        |       X      |    X   |     X    |
+|       Minotaur       |       X      |    X   |     X    |
+|        Modron        |       X      |    X   |     X    |
+|       N'warian       |       X      |    X   |     X    |
+|         Naush        |       X      |    X   |     X    |
+|       Nerakese       |       X      |    X   |     X    |
+|       Netherese      |       X      |    X   |     X    |
+|      Nordmaarian     |       X      |    X   |     X    |
+|    Northern Tongue   |       X      |    X   |     X    |
+|         Ogre         |       X      |    X   |     X    |
+|         Olman        |       X      |    X   |     X    |
+|          Orc         |       X      |    X   |     X    |
+|        Orkish        |       X      |    X   |     X    |
+|        Otyugh        |       X      |    X   |     X    |
+|      Primordial      |       X      |    X   |     X    |
+|        Quirapu       |       X      |    X   |     X    |
+|         Quori        |       X      |    X   |     X    |
+|        Riedran       |       X      |    X   |     X    |
+|       Sahuagin       |       X      |    X   |     X    |
+|        Sensan        |       X      |    X   |     X    |
+|        Shankhi       |       X      |    X   |     X    |
+|       Sindarin       |       X      |    X   |     X    |
+|     Skitterwidget    |       X      |    X   |     X    |
+|         Slaad        |       X      |    X   |     X    |
+|       Solamnic       |       X      |    X   |     X    |
+|        Sphinx        |       X      |    X   |     X    |
+|        Sylvan        |       X      |    X   |     X    |
+|        Terran        |       X      |    X   |     X    |
+|        Thayan        |       X      |    X   |     X    |
+|     Thieves' Cant    |       X      |    X   |     X    |
+|      Thri-kreen      |       X      |    X   |     X    |
+|     Tletlahtolli     |       X      |    X   |     X    |
+|       Tlincalli      |       X      |    X   |     X    |
+|        Tosculi       |       X      |    X   |     X    |
+|      Troglodyte      |       X      |    X   |     X    |
+|       Trollkin       |       X      |    X   |     X    |
+|      Umber Hulk      |       X      |    X   |     X    |
+|        Umbral        |       X      |    X   |     X    |
+|      Undercommon     |       X      |    X   |     X    |
+|       Vedalken       |       X      |    X   |     X    |
+|       Vegepygmy      |       X      |    X   |     X    |
+|      Void Speech     |       X      |    X   |     X    |
+|        Vulpin        |       X      |    X   |     X    |
+|      Warg-speech     |       X      |    X   |     X    |
+|        Westron       |       X      |    X   |     X    |
+|      Winter Wolf     |       X      |    X   |     X    |
+|         Worg         |       X      |    X   |     X    |
+|        Xingyu        |       X      |    X   |     X    |
+|         Yeti         |       X      |    X   |     X    |
+|        Yikaria       |       X      |    X   |     X    |
+|        Zabaani       |       X      |    X   |     X    |
+|        Zemnian       |       X      |    X   |     X    |
+|       Ziklight       |       X      |    X   |     X    |
 
 ### Weapon Settings Dictionary
 This server variable uses a json to determine what weapons can be learned and what ability scores are used for each. Within the `weapon_dict` svar, any weapons left out of the svar will become weapons that players are not allowed to learn through the training alias.

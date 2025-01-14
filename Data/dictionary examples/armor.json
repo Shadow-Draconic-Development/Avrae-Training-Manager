@@ -1,5 +1,24 @@
 {
     "light armor": ["dex", "str"],
     "medium armor": ["dex", "str"],
-    "heavy armor": ["str"]
+    "heavy armor": ["str"],
+    "shield": ["dex", "str"],
+    "breastplate": ["dex", "str"],
+    "chain mail": ["str"],
+    "chain shirt": ["dex", "str"],
+    "half plate": ["dex", "str"],
+    "hide": ["dex", "str"],
+    "leather": ["dex", "str"],
+    "leather corslet": ["dex", "str"],
+    "leather shirt": ["dex", "str"],
+    "padded": ["dex", "str"],
+    "plate": ["str"],
+    "powered armor": ["str"],
+    "pride silk outfit": ["dex", "str"],
+    "ring mail": ["str"],
+    "scale armour": ["dex", "str"],
+    "scale mail": ["dex", "str"],
+    "spiked armor": ["str"],
+    "splint": ["str"],
+    "studded leather": ["dex", "str"]
 }

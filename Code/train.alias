@@ -379,7 +379,7 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
 
     # Gaming set dictionary
     game_test = get_svar('gaming_dict')
-    if game_test != 'None':
+    if game_test:
         list_dicts.append(load_json(game_test))
 
     else:
@@ -400,10 +400,10 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
         pass
 
     # Combines all the dictionaries into one
-    return {key: value, for dictionary in list_dicts for key, value in dictionary.items()}
+    return {key: value for dictionary in list_dicts for key, value in dictionary.items()}
 
 
-def find_highest_stat(stat_list: list, ch = character()) -> int:
+def find_highest_stat(stat_list: list, ch = character()) -> list[str, int]:
     """
     Finds the highest ability mod that is relavant
     
@@ -433,7 +433,13 @@ def find_highest_stat(stat_list: list, ch = character()) -> int:
     for stat in list(set(mod_dict.keys()).symmetric_difference(set(stat_list))):
         mod_dict[stat] = -999
 
-    return [mod_dict[max(mod_dict)], max(mod_dict)]
+    max_skill, max_mod = "None", -9999
+
+    for skill, mod in mod_dict.items():
+        if mod >= max_mod:
+            max_skill, max_mod = skill, mod
+
+    return [max_skill, max_mod]
 
 
 def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> list[str]:
@@ -484,7 +490,7 @@ def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> lis
     ch.create_cc(
         name="Training", 
         minVal="0", 
-        maxVal=str(settings_dict['max_val'] - find_highest_stat(full_dict[target]))[0], 
+        maxVal=str(settings_dict['max_val'] - find_highest_stat(full_dict[target])[1]), 
         reset=None, 
         dispType=settings_dict['disp_type'], 
         reset_to="0", 
@@ -550,26 +556,18 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
                     else:
                         bonus = f"{bonus} + {floor(proficiencyBonus / 2)}"
 
-                else:
-                    pass
-        else:
-            pass
-
         # If there is no bonus
         if bonus == "None":
-            roll_check = vroll(f"{dice} + {result_list[0]}")
+            roll_check = vroll(f"{dice} + {result_list[1]}")
 
         # If there is no bonus
         else:
-            roll_check = vroll(f"{dice} + {bonus} + {result_list[0]}")
+            roll_check = vroll(f"{dice} + {bonus} + {result_list[1]}")
 
         # Figures out how much the counter is increased by
         for key in settings_dict['thresholds'].keys():
             if roll_check.result.total >= int(key):
                 mod_num = settings_dict['thresholds'][key]
-
-            else:
-                pass
 
         # Increases counter
         counter.mod(mod_num)
@@ -584,9 +582,9 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
             desc_dict['bypass'] = True
 
         # Edits the cc
-        ch.edit_cc("Training", minVal="0", maxVal=str(settings_dict['max_val'] - result_list[0]), desc=dump_json(desc_dict), dispType=settings_dict['disp_type'])
+        ch.edit_cc("Training", minVal="0", maxVal=str(settings_dict['max_val'] - result_list[1]), desc=dump_json(desc_dict), dispType=settings_dict['disp_type'])
     
-        return ['Success', roll_check, mod_num, result_list[1]]
+        return ['Success', roll_check, mod_num, result_list[0]]
 
     # If time was not skipped and time cooldown has not been met
     else:
@@ -600,7 +598,7 @@ def threshold_string(threshold_dict: dict) -> str:
     for key, value in threshold_dict.items():
         string_list.append(f"**{key}:** {value}")
 
-    return "\n".join(threshold_string)
+    return "\n".join(string_list)
 
 
 def main(input_list: list[str] = [], ch=character()) -> list[str]:
@@ -624,9 +622,6 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             if ch.cc_exists("Training"):
                 return [f'{ctx.author.display_name} has encountered an error', "Training CC already exists"]
 
-            else:
-                pass
-
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
 
@@ -642,10 +637,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             # Sets up the training cc
             results = setup_training_cc(train_target, settings_dict)
 
-            if results[0] != 'Error':
-                pass
-            
-            else:
+            if results[0] == 'Error':
                 return [f'{ctx.author.display_name} has encountered an error', results[1]]
 
         else:
@@ -653,10 +645,6 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             # If the training cc doesn't exist
             if not ch.cc_exists("Training"):
                 return [f'{ctx.author.display_name} has encountered an error', "Training CC doesn't exist"]
-
-            # If the training cc exists
-            else:
-                pass
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -702,8 +690,8 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         ability_dict = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
 
         # Results
-        result_string = [f"**{ability_dict[results[3]]}**", threshold_string(settings_dict['thresholds'])]
-        result_string.append(f"{str(results[1])}")
+        result_string = [f"**{ability_dict[results[3]]}**\n", threshold_string(settings_dict['thresholds'])]
+        result_string.append(f"{str(results[1])}\n ")
         result_string.append(ch.cc_str('Training'))
         result_string.append(f"{counter.value}/{counter.max}  (+{results[2]})")
         result_string.append(f"Next training session: <t:{desc_dict['time'] + settings_dict['time_cooldown']}:f>")
@@ -712,17 +700,11 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         if counter.value == counter.max:
             result_string.append(f"You have finished your training for {prof_name}! Run `!train clear` and come again next time!")
 
-        else:
-            pass
-
         # If cooldown was bypassed
         if desc_dict['bypass']:
             result_string.append('**`Cooldown timer bypassed`**')
-        
-        else:
-            pass
 
-        return [f'{name} ({ctx.author.display_name}) Training Session: {prof_name}', '\n'.join(result_string)]
+        return [f'{name} Training Session: {prof_name}', '\n'.join(result_string)]
 
     else:
         return [f'{ctx.author.display_name} has encountered an error', results[1]]
@@ -737,4 +719,4 @@ dash = "-"
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Avrae-Aliases-Snippets/master/Aliases/train/image.png"
--footer "!train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 1/13/25 | ShadowsStride"
+-footer "!train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 1/15/25 | ShadowsStride"

@@ -467,17 +467,21 @@ def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> lis
 
         # If it finds more than one proficiency
         else:
-            for key in key_result:
-                if name.lower() == key.lower():
-                    
-                    target = key
-                    
-                else:
-                    pass
-            
-            key_result.insert(0, "**Multiple proficiencies found:**")
 
-            return ["Error", "\n".join(key_result)]
+
+            found = False
+
+            for key in key_result:
+                if target.lower() == key.lower():
+
+                    target = key
+                    found = True
+                    break
+                    
+            if not found:
+                key_result.insert(0, "**Multiple proficiencies found:**")
+
+                return ["Error", "\n".join(key_result)]
 
     # If it does not find a proficiency
     else:
@@ -719,4 +723,4 @@ dash = "-"
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
 -thumb "https://raw.githubusercontent.com/SethHartman13/Avrae-Aliases-Snippets/master/Aliases/train/image.png"
--footer "!train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 1/15/25 | ShadowsStride"
+-footer "!train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 5/9/25 | ShadowsStride"

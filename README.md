@@ -4,14 +4,14 @@ This does require cvar `subclass` to contain `Fey Wanderer`, otherwise the bonus
 
 ## Settings
 - [Settings](#settings)
-    - [Settings Dictionary Variable](#settings-dictionary-variable)
-    - [Tool Settings Dictionary](#tool-settings-dictionary)
-    - [Language Settings Dictionary](#language-settings-dictionary)
-    - [Weapon Settings Dictionary](#weapon-settings-dictionary)
-    - [Instrument Settings Dictionary](#instrument-settings-dictionary)
-    - [Gaming Set Settings Dictionary](#gaming-set-settings-dictionary)
-    - [Skill Settings Dictionary (README)](#skill-settings-dictionary-readme)
-    - [Armor Settings Dictionary (README)](#armor-settings-dictionary-readme)
+  - [Settings Dictionary Variable](#settings-dictionary-variable)
+  - [Tool Settings Dictionary](#tool-settings-dictionary)
+  - [Language Settings Dictionary](#language-settings-dictionary)
+  - [Weapon Settings Dictionary](#weapon-settings-dictionary)
+  - [Instrument Settings Dictionary](#instrument-settings-dictionary)
+  - [Gaming Set Settings Dictionary](#gaming-set-settings-dictionary)
+  - [Skill Settings Dictionary (README)](#skill-settings-dictionary-readme)
+  - [Armor Settings Dictionary (README)](#armor-settings-dictionary-readme)
 - [License Notice](#license-notice)
 - [Requests](#requests)
 - [Ko-fi](#ko-fi)
@@ -47,25 +47,29 @@ If you do not have the `tool_dict` svar created, it will default to the below se
 
 [Dictionary Example](https://github.com/Shadow-Draconic-Development/Avrae-Training-Manager/blob/main/Data/dictionary%20examples/tools.json)
 
-|                         | Strength | Dexterity | Intelligence | Wisdom | Charisma |
-|:-----------------------:|:--------:|:---------:|:------------:|:------:|:--------:|
-|   Alchemist's Supplies  |          |           |       X      |    X   |          |
-|    Brewer's Supplies    |          |           |       X      |    X   |     X    |
-| Calligrapher's Supplies |          |     X     |       X      |        |     X    |
-|    Carpenter's Tools    |     X    |     X     |       X      |    X   |          |
-|     Cobbler's Tools     |     X    |     X     |       X      |    X   |     X    |
-|       Cook's Tools      |          |     X     |       X      |    X   |          |
-|   Glassblower's Tools   |          |     X     |       X      |        |          |
-|     Jeweler's Tools     |          |     X     |       X      |        |     X    |
-|  Leatherworker's Tools  |     X    |     X     |              |    X   |          |
-|      Mason's Tools      |     X    |           |       X      |        |          |
-|    Painter's Supplies   |          |     X     |              |    X   |     X    |
-|      Potter's Tools     |          |     X     |              |    X   |          |
-|      Thieves' Tools     |          |     X     |       X      |        |          |
-|      Tinker's Tools     |          |     X     |       X      |        |          |
-|      Weaver's Tools     |          |     X     |       X      |    X   |          |
-|    Woodcarver's Tools    |          |     X     |       X      |    X   |          |
-|      Smith's Tools      |     X    |     X     |              |        |          |
+|                           |  Strength  |  Dexterity  |  Intelligence  |  Wisdom  |  Charisma  |
+|:-------------------------:|:----------:|:-----------:|:--------------:|:--------:|:----------:|
+|    Alchemist's Supplies   |            |             |        X       |     X    |            |
+|     Brewer's Supplies     |            |             |        X       |     X    |      X     |
+|  Calligrapher's Supplies  |            |      X      |        X       |          |      X     |
+|     Carpenter's Tools     |      X     |      X      |        X       |     X    |            |
+|    Cartographer's Tools   |            |             |        X       |     X    |            |
+|      Cobbler's Tools      |      X     |      X      |        X       |     X    |      X     |
+|        Cook's Tools       |            |      X      |        X       |     X    |            |
+|    Glassblower's Tools    |            |      X      |        X       |          |            |
+|      Jeweler's Tools      |            |      X      |        X       |          |      X     |
+|   Leatherworker's Tools   |      X     |      X      |                |     X    |            |
+|       Mason's Tools       |      X     |             |        X       |          |            |
+|     Painter's Supplies    |            |      X      |                |     X    |      X     |
+|       Potter's Tools      |            |      X      |                |     X    |            |
+|       Thieves' Tools      |            |      X      |        X       |          |            |
+|       Tinker's Tools      |            |      X      |        X       |          |            |
+|       Weaver's Tools      |            |      X      |        X       |     X    |            |
+|     Woodcarver's Tools    |            |      X      |        X       |     X    |            |
+|       Smith's Tools       |      X     |      X      |                |          |            |
+|       Land Vehicles       |      X     |      X      |        X       |     X    |            |
+|       Water Vehicles      |      X     |      X      |        X       |     X    |      X     |
+|       Space Vehicles      |      X     |      X      |        X       |     X    |      X     |
 
 ### Language Settings Dictionary
 This server variable uses a json to determine what languages can be learned and what ability scores are used for each. Within the `lang_dict` svar, any languages left out of the svar will become languages that players are not allowed to learn through the training alias.

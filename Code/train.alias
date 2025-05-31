@@ -117,6 +117,7 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
     "brewer's supplies": ["int", "wis", "cha"],
     "calligrapher's supplies": ["dex", "int", "cha"],
     "carpenter's tools": ["str", "dex", "int", "wis"],
+    "cartographer's tools": ["int", "wis"],
     "cobbler's tools": ["str", "dex", "int", "wis", "cha"],
     "cook's tools": ["dex", "int", "wis"],
     "glassblower's tools": ["dex", "int"],
@@ -134,7 +135,10 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
     "herbalism kit": ["int", "wis"],
     "navigator's tools": ["int", "wis"],
     "poisoner's kit": ["int", "wis"],
-    "smith's tools": ["str", "dex"]
+    "smith's tools": ["str", "dex"],
+    "land vehicles": ["str", "dex", "wis", "int"],
+    "water vehicles": ["str", "dex", "wis", "int", "cha"],
+    "space vehicles": ["str", "dex", "wis", "int", "cha"]
     }
 
     # Language dictionary

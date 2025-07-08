@@ -109,302 +109,68 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
     Return:
         (dict): Dictionary of all proficiencies and relevant skills
     """
-
-    # Default values
-    # Tool dictionary
-    tool_dict = {
-    "alchemist's supplies": ["int", "wis"],
-    "brewer's supplies": ["int", "wis", "cha"],
-    "calligrapher's supplies": ["dex", "int", "cha"],
-    "carpenter's tools": ["str", "dex", "int", "wis"],
-    "cartographer's tools": ["int", "wis"],
-    "cobbler's tools": ["str", "dex", "int", "wis", "cha"],
-    "cook's tools": ["dex", "int", "wis"],
-    "glassblower's tools": ["dex", "int"],
-    "jeweler's tools": ["dex", "cha"],
-    "leatherworker's tools": ["str", "dex", "wis"],
-    "mason's tools": ["str", "int"],
-    "painter's supplies": ["dex", "wis", "cha"],
-    "potter's tools": ["dex", "wis"],
-    "thieves' tools": ["dex", "int"],
-    "tinker's tools": ["dex", "int"],
-    "weaver's tools": ["dex", "int", "wis"],
-    "woodcarver's tools": ["dex", "int", "wis"],
-    "disguise kit": ["int", "wis", "cha"],
-    "forgery kit": ["int", "wis"],
-    "herbalism kit": ["int", "wis"],
-    "navigator's tools": ["int", "wis"],
-    "poisoner's kit": ["int", "wis"],
-    "smith's tools": ["str", "dex"],
-    "land vehicles": ["str", "dex", "wis", "int"],
-    "water vehicles": ["str", "dex", "wis", "int", "cha"],
-    "space vehicles": ["str", "dex", "wis", "int", "cha"]
-    }
-
-    # Language dictionary
-    lang_dict = {
-    "loxodan": ["int", "wis", "cha"],
-    "aarakocra": ["int", "wis", "cha"],
-    "artuk": ["int", "wis", "cha"],
-    "abanasinian": ["int", "wis", "cha"],
-    "abyssal": ["int", "wis", "cha"],
-    "angulotl": ["int", "wis", "cha"],
-    "ankeshelian": ["int", "wis", "cha"],
-    "aquan": ["int", "wis", "cha"],
-    "auran": ["int", "wis", "cha"],
-    "birdfolk": ["int", "wis", "cha"],
-    "black speech": ["int", "wis", "cha"],
-    "blink dog": ["int", "wis", "cha"],
-    "bothii": ["int", "wis", "cha"],
-    "bullywug": ["int", "wis", "cha"],
-    "celestial": ["int", "wis", "cha"],
-    "cervan": ["int", "wis", "cha"],
-    "citlanes": ["int", "wis", "cha"],
-    "common sign language": ["int", "wis", "cha"],
-    "daelkyr": ["int", "wis", "cha"],
-    "dalish": ["int", "wis", "cha"],
-    "darakhul": ["int", "wis", "cha"],
-    "deep speech": ["int", "wis", "cha"],
-    "demodand": ["int", "wis", "cha"],
-    "derro": ["int", "wis", "cha"],
-    "djaynaian": ["int", "wis", "cha"],
-    "dohwar": ["int", "wis", "cha"],
-    "draconic": ["int", "wis", "cha"],
-    "druidic": ["int", "wis", "cha"],
-    "dwarvish": ["int", "wis", "cha"],
-    "elvish": ["int", "wis", "cha"],
-    "eonic": ["int", "wis", "cha"],
-    "ergot": ["int", "wis", "cha"],
-    "erina": ["int", "wis", "cha"],
-    "feather speech": ["int", "wis", "cha"],
-    "giant": ["int", "wis", "cha"],
-    "giant eagle": ["int", "wis", "cha"],
-    "giant elk": ["int", "wis", "cha"],
-    "giant owl": ["int", "wis", "cha"],
-    "gith": ["int", "wis", "cha"],
-    "gnoll": ["int", "wis", "cha"],
-    "gnomish": ["int", "wis", "cha"],
-    "goblin": ["int", "wis", "cha"],
-    "godstongue": ["int", "wis", "cha"],
-    "grell": ["int", "wis", "cha"],
-    "grippli": ["int", "wis", "cha"],
-    "grung": ["int", "wis", "cha"],
-    "hadozee": ["int", "wis", "cha"],
-    "halfling": ["int", "wis", "cha"],
-    "halri": ["int", "wis", "cha"],
-    "hedge": ["int", "wis", "cha"],
-    "hook horror": ["int", "wis", "cha"],
-    "huginn's speech": ["int", "wis", "cha"],
-    "ice toad": ["int", "wis", "cha"],
-    "ignan": ["int", "wis", "cha"],
-    "infernal": ["int", "wis", "cha"],
-    "istarian": ["int", "wis", "cha"],
-    "ixitxachitil": ["int", "wis", "cha"],
-    "jerbeen": ["int", "wis", "cha"],
-    "kenderspeak": ["int", "wis", "cha"],
-    "kharolian": ["int", "wis", "cha"],
-    "khur": ["int", "wis", "cha"],
-    "kothian": ["int", "wis", "cha"],
-    "kraul": ["int", "wis", "cha"],
-    "kruthik": ["int", "wis", "cha"],
-    "kuran'zol": ["int", "wis", "cha"],
-    "lemurfolk": ["int", "wis", "cha"],
-    "leonin": ["int", "wis", "cha"],
-    "loxodon": ["int", "wis", "cha"],
-    "mapach": ["int", "wis", "cha"],
-    "marquesian": ["int", "wis", "cha"],
-    "maynah": ["int", "wis", "cha"],
-    "minotaur": ["int", "wis", "cha"],
-    "modron": ["int", "wis", "cha"],
-    "n'warian": ["int", "wis", "cha"],
-    "naush": ["int", "wis", "cha"],
-    "nerakese": ["int", "wis", "cha"],
-    "netherese": ["int", "wis", "cha"],
-    "nordmaarian": ["int", "wis", "cha"],
-    "northern tongue": ["int", "wis", "cha"],
-    "ogre": ["int", "wis", "cha"],
-    "olman": ["int", "wis", "cha"],
-    "orc": ["int", "wis", "cha"],
-    "orkish": ["int", "wis", "cha"],
-    "otyugh": ["int", "wis", "cha"],
-    "primordial": ["int", "wis", "cha"],
-    "quirapu": ["int", "wis", "cha"],
-    "quori": ["int", "wis", "cha"],
-    "riedran": ["int", "wis", "cha"],
-    "sahuagin": ["int", "wis", "cha"],
-    "sensan": ["int", "wis", "cha"],
-    "shankhi": ["int", "wis", "cha"],
-    "sindarin": ["int", "wis", "cha"],
-    "skitterwidget": ["int", "wis", "cha"],
-    "slaad": ["int", "wis", "cha"],
-    "solamnic": ["int", "wis", "cha"],
-    "sphinx": ["int", "wis", "cha"],
-    "sylvan": ["int", "wis", "cha"],
-    "terran": ["int", "wis", "cha"],
-    "thayan": ["int", "wis", "cha"],
-    "thieves' cant": ["int", "wis", "cha"],
-    "thri-kreen": ["int", "wis", "cha"],
-    "tletlahtolli": ["int", "wis", "cha"],
-    "tlincalli": ["int", "wis", "cha"],
-    "tosculi": ["int", "wis", "cha"],
-    "troglodyte": ["int", "wis", "cha"],
-    "trollkin": ["int", "wis", "cha"],
-    "umber hulk": ["int", "wis", "cha"],
-    "umbral": ["int", "wis", "cha"],
-    "undercommon": ["int", "wis", "cha"],
-    "vedalken": ["int", "wis", "cha"],
-    "vegepygmy": ["int", "wis", "cha"],
-    "void speech": ["int", "wis", "cha"],
-    "vulpin": ["int", "wis", "cha"],
-    "warg-speech": ["int", "wis", "cha"],
-    "westron": ["int", "wis", "cha"],
-    "winter wolf": ["int", "wis", "cha"],
-    "worg": ["int", "wis", "cha"],
-    "xingyu": ["int", "wis", "cha"],
-    "yeti": ["int", "wis", "cha"],
-    "yikaria": ["int", "wis", "cha"],
-    "zabaani": ["int", "wis", "cha"],
-    "zemnian": ["int", "wis", "cha"],
-    "ziklight": ["int", "wis", "cha"]
-}
-
-    # Weapon dictionary
-    weapon_dict = {
-    "club": ["str"], 
-    "dagger": ["str", "dex"], 
-    "greatclub": ["str"], 
-    "handaxe": ["str"], 
-    "javelin": ["str"], 
-    "light hammer": ["str"], 
-    "mace": ["str"], 
-    "quarterstaff": ["str"], 
-    "sickle": ["str"], 
-    "spear": ["str"], 
-    "yklwa": ["str"], 
-    "light crossbow": ["dex"], 
-    "dart": ["dex"], 
-    "shortbow": ["dex"], 
-    "sling": ["dex"], 
-    "battleaxe": ["str"], 
-    "flail": ["str"], 
-    "glaive": ["str"], 
-    "greataxe": ["str"], 
-    "greatsword": ["str"], 
-    "halberd": ["str"], 
-    "lance": ["str"], 
-    "longsword": ["str"], 
-    "maul": ["str"], 
-    "morningstar": ["str"], 
-    "pike": ["str"], 
-    "rapier": ["str", "dex"], 
-    "scimitar": ["str", "dex"], 
-    "shortsword": ["str", "dex"], 
-    "trident": ["str"], 
-    "war pick": ["str"], 
-    "warhammer": ["str"], 
-    "whip": ["str", "dex"], 
-    "blowgun": ["dex"], 
-    "hand crossbow": ["dex"], 
-    "heavy crossbow": ["dex"], 
-    "longbow": ["dex"], 
-    "net": ["str"]
-    }
-
-    # Instrument dictionary
-    instrument_dict = {
-    "bagpipes": ["int", "cha"], 
-    "drum": ["int", "cha"], 
-    "dulcimer": ["int", "cha"], 
-    "flute": ["int", "cha"], 
-    "lute": ["dex", "int", "cha"], 
-    "horn": ["int", "cha"],
-    "pan flute": ["int", "cha"],
-    "shawm": ["int", "cha"],
-    "lyre": ["dex", "int", "cha"],  
-    "viol": ["dex", "int", "cha"],
-    "bird pipes": ["int", "cha"],
-    "glaur": ["con", "cha"],
-    "hand drum": ["dex", "cha"],
-    "longhorn": ["wis", "cha"],
-    "songhorn": ["int", "cha"],
-    "tantan": ["dex", "cha"],
-    "thelarr": ["int", "cha"],
-    "tocken": ["dex", "cha"],
-    "wargong": ["str", "cha"],
-    "whistle-stick": ["wis", "cha"],
-    "yarting": ["dex", "cha"],
-    "zulkoon": ["con", "cha"]
-    }
-
-    # Gaming set dictionary
-    gaming_dict = {
-    "dice set": ["dex", "int", "wis", "cha"], 
-    "dragonchess set": ["int", "wis", "cha"], 
-    "playing card set": ["dex", "int", "wis", "cha"], 
-    "three-dragon ante set": ["int", "wis", "cha"]
-    }
-
+    
     # Setup
     full_dict = dict()
     list_dicts = []
 
     # Thank you genesisest for putting these dictionaries together
+
     # Tool dictionary
-    tool_test = get_svar('tool_dict')
-    if tool_test:
+    # Default: No SVAR, load default
+    if not (tool_test := get_svar("tool_dict")):
+        list_dicts.append(load_json(get_gvar("faab1e01-0a17-4f80-92be-cca4cb0c8890")))
+
+    else:
         list_dicts.append(load_json(tool_test))
 
-    else:
-        list_dicts.append(tool_dict)
-
     # Language dictionary
-    lang_test = get_svar('lang_dict')
-    if lang_test:
-        list_dicts.append(load_json(lang_test))
-    
+    # Default: No SVAR, load default
+    if not (lang_test := get_svar("lang_dict")):
+        list_dicts.append(load_json(get_gvar("8ed3dad0-b961-4f5b-9e7c-cef0422fefa2")))
+
     else:
-        list_dicts.append(lang_dict)
+        list_dicts.append(load_json(lang_test))
 
     # Weapon dictionary
-    weapon_test = get_svar('weapon_dict')
-    if weapon_test:
+    # Default: No SVAR, load default
+    if not (weapon_test := get_svar("weapon_dict")):
+        list_dicts.append(load_json(get_gvar("74458a56-53b4-47cb-b36f-246fc83e90b1")))
+
+    else:
         list_dicts.append(load_json(weapon_test))
 
-    else:
-        list_dicts.append(weapon_dict)
-
     # Instrument dictionary
-    instrument_test = get_svar('instrument_dict')
-    if instrument_test:
+    # Default: No SVAR, load default
+    if not (instrument_test := get_svar("instrument_dict")):
+        list_dicts.append(load_json(get_gvar("0179ef16-947e-402d-b6c4-0da4c16c4180")))
+
+    else:
         list_dicts.append(load_json(instrument_test))
 
-    else:
-        list_dicts.append(instrument_dict)
-
     # Gaming set dictionary
-    game_test = get_svar('gaming_dict')
-    if game_test:
+    # Default: No SVAR, load default
+    if not (game_test := get_svar("gaming_dict")):
+        list_dicts.append(load_json(get_gvar("d06c529f-128e-4f4a-9d58-3cb78c59c87a")))
+
+    else:
         list_dicts.append(load_json(game_test))
 
-    else:
-        list_dicts.append(gaming_dict)
-
     # Skill dictionary
-    skill_test = get_svar('skill_dict')
-    if skill_test:
+    # Default: No SVAR, no default
+    if (skill_test := get_svar("skill_dict")):
         list_dicts.append(load_json(skill_test))
-    else:
-        pass
 
     # Armor dictionary
-    armor_test = get_svar('armor_dict')
-    if armor_test:
+    # Default: No SVAR, no default
+    if (armor_test := get_svar("armor_dict")):
         list_dicts.append(load_json(armor_test))
-    else:
-        pass
 
     # Combines all the dictionaries into one
-    return {key: value for dictionary in list_dicts for key, value in dictionary.items()}
+    for temp_dict in list_dicts:
+        full_dict = full_dict | temp_dict
+
+    return full_dict
 
 
 def find_highest_stat(stat_list: list, ch = character()) -> list[str, int]:
@@ -600,9 +366,28 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
 
 
 def threshold_string(threshold_dict: dict) -> str:
+    """
+    Stringifies threshold dictionary
+
+    Args:
+        threshold_dict (dict): Threshold dictionary
+
+    Return:
+        str: Stringified dictionary
+    """
 
     string_list = [f"**DC:** # of successes"]
     
+    try:
+        if threshold_dict["-999"] == 0:
+            threshold_dict.pop("-999")
+    
+        else:
+            threshold_dict["0"] = threshold_dict.pop("-999")
+
+    except:
+        pass
+
     for key, value in threshold_dict.items():
         string_list.append(f"**{key}:** {value}")
 
@@ -706,7 +491,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
 
         # If the counter is finished
         if counter.value == counter.max:
-            result_string.append(f"You have finished your training for {prof_name}! Run `!train clear` and come again next time!")
+            result_string.append(f"You have finished your training for {prof_name}! Run `{ctx.prefix}train clear` and come again next time!")
 
         # If cooldown was bypassed
         if desc_dict['bypass']:
@@ -726,5 +511,5 @@ dash = "-"
 </drac2>
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Avrae-Aliases-Snippets/master/Aliases/train/image.png"
--footer "!train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 5/9/25 | ShadowsStride"
+-thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/8/25 | ShadowsStride"

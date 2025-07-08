@@ -1,0 +1,151 @@
+embed
+<drac2>
+
+def get_page_info(strings_list: list[str], page_number: int) -> tuple[str, int, int]:
+    """
+    Grabs the page info of the specified page number
+
+    Args:
+        strings_list (list[str]): List of proficiencies
+        page_number (int): Page number
+
+    Return:
+        str: Stringified list of proficiencies of specified page
+        int: Page number
+        int: Max number of pages
+    """
+    
+    # If the strings list is not empty
+    if len(strings_list) >= 1:
+
+        # Sort the list of proficiencies
+        strings_list.sort()
+
+        # Min-clamp page number
+        page_number = max(page_number, 1)
+
+        # Page setup
+        pages = [""]
+        CHAR_LIMIT = 300
+        page_index = 0
+
+    # If the strings list is not empty
+    else:
+        return "Nothing", 1, 1
+
+    # For each proficiency 
+    for string in strings_list:
+
+        # If length does not exceed character limit, add to "page"
+        if len(f"{string}\n") + len(pages[page_index]) <= CHAR_LIMIT:
+            pages[page_index] += f"{string.capitalize()}\n"
+
+        # If length exceeds character limit, create new "page"
+        else:
+            page_index += 1
+            pages.append(f"{string.capitalize()}\n")
+
+    # Max-clamp page number
+    page_number = min(page_number, page_index + 1)
+
+    return pages[page_number - 1], page_number, page_index + 1
+
+
+def grab_tool_weapon_lang_skill_armor() -> dict:
+    """
+    Grabs all the dictionaries necessary for the skills
+
+    Return:
+        (dict): Dictionary of all proficiencies and relevant skills
+    """
+    
+    # Setup
+    full_dict = dict()
+    list_dicts = []
+
+    # Thank you genesisest for putting these dictionaries together
+
+    # Tool dictionary
+    # Default: No SVAR, load default
+    if not (tool_test := get_svar("tool_dict")):
+        list_dicts.append(load_json(get_gvar("faab1e01-0a17-4f80-92be-cca4cb0c8890")))
+
+    else:
+        list_dicts.append(load_json(tool_test))
+
+    # Language dictionary
+    # Default: No SVAR, load default
+    if not (lang_test := get_svar("lang_dict")):
+        list_dicts.append(load_json(get_gvar("8ed3dad0-b961-4f5b-9e7c-cef0422fefa2")))
+
+    else:
+        list_dicts.append(load_json(lang_test))
+
+    # Weapon dictionary
+    # Default: No SVAR, load default
+    if not (weapon_test := get_svar("weapon_dict")):
+        list_dicts.append(load_json(get_gvar("74458a56-53b4-47cb-b36f-246fc83e90b1")))
+
+    else:
+        list_dicts.append(load_json(weapon_test))
+
+    # Instrument dictionary
+    # Default: No SVAR, load default
+    if not (instrument_test := get_svar("instrument_dict")):
+        list_dicts.append(load_json(get_gvar("0179ef16-947e-402d-b6c4-0da4c16c4180")))
+
+    else:
+        list_dicts.append(load_json(instrument_test))
+
+    # Gaming set dictionary
+    # Default: No SVAR, load default
+    if not (game_test := get_svar("gaming_dict")):
+        list_dicts.append(load_json(get_gvar("d06c529f-128e-4f4a-9d58-3cb78c59c87a")))
+
+    else:
+        list_dicts.append(load_json(game_test))
+
+    # Skill dictionary
+    # Default: No SVAR, no default
+    if (skill_test := get_svar("skill_dict")):
+        list_dicts.append(load_json(skill_test))
+
+    # Armor dictionary
+    # Default: No SVAR, no default
+    if (armor_test := get_svar("armor_dict")):
+        list_dicts.append(load_json(armor_test))
+
+    # Combines all the dictionaries into one
+    for temp_dict in list_dicts:
+        full_dict = full_dict | temp_dict
+
+    return full_dict
+
+
+def main(input_list: list[str]) -> tuple[str, str]:
+
+
+    if len(input_list) < 1:
+        input_list.append(1)
+
+    try:
+        input_list[0] = int(input_list[0])
+
+    except:
+        input_list[0] = 1
+
+    f, page_number, page_max = get_page_info(list(grab_tool_weapon_lang_skill_armor().keys()), input_list[0])
+    title = f"Available Proficiency Trainings (Page {page_number}/{page_max})"
+
+    return title, f
+
+
+title, f = main(&ARGS&)
+left_arrow = "<"
+
+
+</drac2>
+-title "{{title}}"
+-f "{{f}}"
+-thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
+-footer "{{ctx.prefix}}train list {{left_arrow}}#> | 7/8/25 | ShadowsStride"

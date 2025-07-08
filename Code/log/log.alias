@@ -57,7 +57,7 @@ def main(ch=character()) -> list[str]:
 
         # If counter is finished
         if counter.value == counter.max:
-            result_string.append(f"You have finished your training for {prof_name}! Run `!train clear` to clear your cc!")
+            result_string.append(f"You have finished your training for {prof_name}! Run `{ctx.prefix}train clear` to clear your cc!")
 
         else:
             pass
@@ -69,7 +69,7 @@ def main(ch=character()) -> list[str]:
         else:
             pass
 
-        return [f'{name} ({ctx.author.display_name}) is checking their training progress with {prof_name}', "\n".join(result_string)]
+        return [f'{name} Checks Their Training Progress With {prof_name}', "\n".join(result_string)]
 
     else:
         return [f'{ctx.author.display_name} has encountered an error', 'Training CC does not exist']
@@ -81,5 +81,5 @@ output_list = main()
 </drac2>
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Avrae-Aliases-Snippets/master/Aliases/train/image.png"
--footer "!train log | Updated 7/5/2023 | ShadowsStride"
+-thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
+-footer "{{ctx.prefix}}train log | 7/8/2025 | ShadowsStride"

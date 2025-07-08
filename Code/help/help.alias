@@ -6,14 +6,16 @@ embed
 # * License available at https://creativecommons.org/licenses/by/4.0/legalcode.
 # *******************************************************
 
+prefix = ctx.prefix
+
 # Header
 result_string = []
 result_string.append("Sounds like you need someone to provide the help action. Here is a list of the subaliases used for this library.")
 result_string.append("")
 
 # Help/main
-result_string.append("`!train help`: This subalias")
-result_string.append("`!train <prof_name> <-b> <adv/dis> <-i>`: Starts/continues training counter.")
+result_string.append(f"`{prefix}train help`: This subalias")
+result_string.append(f"`{prefix}train <prof_name> <-b> <adv/dis> <-i>`: Starts/continues training counter.")
 result_string.append("`prof_name`: If the training has not started prof_name is required. If continuing training you do not add it")
 result_string.append("`-b`: Adds bonus to check")
 result_string.append("`-i`: Ignores training cooldown (DO NOT USE EXCEPT WHEN TOLD BY AN ADMIN)")
@@ -21,19 +23,18 @@ result_string.append("`adv`/`dis`: Applies advantage/disadvantage")
 result_string.append("")
 
 # Clear/restore
-result_string.append("`!train clear`: Clears Training CC so that a new training can start")
-result_string.append("`!train restore`: Restores Training CC so that you undo a previous `!train clear` or `!train restore` (when you accidentally overwrite a training in progress)")
+result_string.append(f"`{prefix}train clear`: Clears Training CC so that a new training can start")
+result_string.append(f"`{prefix}train restore`: Restores Training CC so that you undo a previous `{prefix}train clear` or `{prefix}train restore` (when you accidentally overwrite a training in progress)")
 result_string.append("")
 
-# Log
-result_string.append("`!train log`: Checks training progress (also gives proficiency name)")
+# List/Log
+result_string.append(f"`{prefix}train list: Lists available proficiencies to be trained in")
+result_string.append(f"`{prefix}train log`: Checks training progress (also gives proficiency name)")
 result_string.append("")
-
-result_string.append("**Note:** This alias was updated on 9/20. Skill proficencies, by default, are turned off. View the GitHub (run `!help train` to get link) for additional information")
 
 
 </drac2>
--title "{{f"{ctx.author.display_name} needs help!"}}"
+-title "{{f"{ctx.author.display_name} needs help{prefix}"}}"
 -f "{{string}}"
--thumb "https://raw.githubusercontent.com/SethHartman13/Avrae-Aliases-Snippets/master/Aliases/train/image.png"
--footer "!train help | Updated 9/20/23 | ShadowsStride"
+-thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
+-footer "{{prefix}}train help | 7/8/25 | ShadowsStride"

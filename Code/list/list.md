@@ -3,7 +3,10 @@
 Subalias that lists all available proficiencies to learn.
 
 ## Help
-`!train list <#>`
+`!train list <name> <#>`
+- `name`
+    - Proficiency name look up
+    - Optional
 - `#`
     - Page number
     - Optional

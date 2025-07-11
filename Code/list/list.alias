@@ -1,12 +1,14 @@
 embed
 <drac2>
 
-def get_page_info(strings_list: list[str], page_number: int) -> tuple[str, int, int]:
+
+def get_page_info(strings_list: list[str], str_lookup: str, page_number: int) -> tuple[str, int, int]:
     """
     Grabs the page info of the specified page number
 
     Args:
         strings_list (list[str]): List of proficiencies
+        str_lookup (str): String to narrow down proficiencies
         page_number (int): Page number
 
     Return:
@@ -15,6 +17,10 @@ def get_page_info(strings_list: list[str], page_number: int) -> tuple[str, int, 
         int: Max number of pages
     """
     
+    # If string lookup is not blank, narrow down results
+    if str_lookup != "":
+        strings_list = [item for item in strings_list if str_lookup.lower() in item.lower()]
+
     # If the strings list is not empty
     if len(strings_list) >= 1:
 
@@ -29,9 +35,9 @@ def get_page_info(strings_list: list[str], page_number: int) -> tuple[str, int, 
         CHAR_LIMIT = 300
         page_index = 0
 
-    # If the strings list is not empty
+    # If the strings list is empty
     else:
-        return "Nothing", 1, 1
+        return "`Nothing`", 1, 1
 
     # For each proficiency 
     for string in strings_list:
@@ -126,15 +132,28 @@ def main(input_list: list[str]) -> tuple[str, str]:
 
 
     if len(input_list) < 1:
+        input_list.append("")
         input_list.append(1)
 
+    elif len(input_list) < 2:
+
+        try:
+            input_list[-1] = int(input_list[-1])
+            input_list.insert(0, "")
+
+        except:
+            input_list.append(1)
+
+    else:
+        pass
+
     try:
-        input_list[0] = int(input_list[0])
+        input_list[1] = int(input_list[1])
 
     except:
-        input_list[0] = 1
+        input_list[1] = 1
 
-    f, page_number, page_max = get_page_info(list(grab_tool_weapon_lang_skill_armor().keys()), input_list[0])
+    f, page_number, page_max = get_page_info(list(grab_tool_weapon_lang_skill_armor().keys()), input_list[0], input_list[1])
     title = f"Available Proficiency Trainings (Page {page_number}/{page_max})"
 
     return title, f
@@ -148,4 +167,4 @@ left_arrow = "<"
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train list {{left_arrow}}#> | 7/8/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train list {{left_arrow}}name> {{left_arrow}}#> | 7/9/25 | ShadowsStride"

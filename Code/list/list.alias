@@ -129,36 +129,56 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
 
 
 def main(input_list: list[str]) -> tuple[str, str]:
+    """
+    Main program function
 
+    Args:
+        input_list (list[str]): User inputs
 
+    Return:
+        str: Title
+        str: Main body paragraph
+    """
+
+    # If no inputs were given
     if len(input_list) < 1:
+
+        # Filler string and page number
         input_list.append("")
         input_list.append(1)
 
+    # If at least one input was given
     elif len(input_list) < 2:
 
+        # If input is a number
         try:
             input_list[-1] = int(input_list[-1])
             input_list.insert(0, "")
 
+        # If input is not a number
         except:
             input_list.append(1)
 
+    # If two or more inputs were given
     else:
         pass
 
+    # Try to convert page number into integer
     try:
         input_list[1] = int(input_list[1])
 
+    # If page number is not a number
     except:
         input_list[1] = 1
 
+    # Grab page main body paragraph, page number
     f, page_number, page_max = get_page_info(list(grab_tool_weapon_lang_skill_armor().keys()), input_list[0], input_list[1])
     title = f"Available Proficiency Trainings (Page {page_number}/{page_max})"
 
     return title, f
 
 
+# Main program function
 title, f = main(&ARGS&)
 left_arrow = "<"
 

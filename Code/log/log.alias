@@ -72,7 +72,7 @@ def main(ch=character()) -> list[str]:
         return [f'{name} Checks Their Training Progress With {prof_name}', "\n".join(result_string)]
 
     else:
-        return [f'{ctx.author.display_name} has encountered an error', 'Training CC does not exist']
+        return ["You Have Been Sneak Attacked by an Error", 'Training CC does not exist']
 
 
 output_list = main()
@@ -82,4 +82,4 @@ output_list = main()
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train log | 7/8/2025 | ShadowsStride"
+-footer "{{ctx.prefix}}train log | 7/21/2025 | ShadowsStride"

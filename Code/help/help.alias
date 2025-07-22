@@ -34,7 +34,7 @@ result_string.append("")
 
 
 </drac2>
--title "{{f"{ctx.author.display_name} needs help{prefix}"}}"
+-title "{{f"is Needing Some Help"}}"
 -f "{{string}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{prefix}}train help | 7/8/25 | ShadowsStride"
+-footer "{{prefix}}train help | 7/21/25 | ShadowsStride" 

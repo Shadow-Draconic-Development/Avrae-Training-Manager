@@ -413,7 +413,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis']:
 
             if ch.cc_exists("Training"):
-                return [f'{ctx.author.display_name} has encountered an error', "Training CC already exists"]
+                return ["You Have Been Sneak Attacked by an Error", "Training CC already exists"]
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -431,13 +431,13 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             results = setup_training_cc(train_target, settings_dict)
 
             if results[0] == 'Error':
-                return [f'{ctx.author.display_name} has encountered an error', results[1]]
+                return ["You Have Been Sneak Attacked by an Error", results[1]]
 
         else:
 
             # If the training cc doesn't exist
             if not ch.cc_exists("Training"):
-                return [f'{ctx.author.display_name} has encountered an error', "Training CC doesn't exist"]
+                return ["You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"]
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -455,7 +455,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
 
         # If training cc doesn't exist
         if not ch.cc_exists("Training"):
-            return [f'{ctx.author.display_name} has encountered an error', "Training CC doesn't exist"]
+            return ["You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"]
 
         # If the training cc exists
         else:
@@ -500,7 +500,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         return [f'{name} Training Session: {prof_name}', '\n'.join(result_string)]
 
     else:
-        return [f'{ctx.author.display_name} has encountered an error', results[1]]
+        return ["You Have Been Sneak Attacked by an Error", results[1]]
 
 
 output_list = main(&ARGS&)
@@ -512,4 +512,4 @@ dash = "-"
 -title "{{output_list[0]}}"
 -f "{{output_list[1]}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/8/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/21/25 | ShadowsStride"

@@ -13,4 +13,4 @@ This does require cvar `subclass` to contain `Fey Wanderer`, otherwise the bonus
 
 `-i`: Ignores training cooldown (DO NOT USE EXCEPT WHEN TOLD BY AN ADMIN, the alias does keep track if this was used).
 
-`adv`/`dis`: Applies advantage/disadvantage.
+`adv`/`dis`/`eadv`: Applies advantage/disadvantage/double advantage.

@@ -24,26 +24,13 @@ def search_key(query: str, key_list: list[str]) -> list[str]|str:
         (str): If it finds it, it returns the key, otherwise it returns 'None'
     """
 
-    # Creates list to store matches
-    key_results = []
-
-    # Checks each item if a match occurs
-    for key in key_list:
-
-        # If matches
-        if query.lower() in key.lower():
-            key_results.append(key)
-
-        else:
-            pass
-
     # Finds at least 1 match
-    if len(key_results) > 0:
-        return key_results
+    if len(item_results := [item for item in key_list if query.lower() in item.lower()]) > 0:
+        return item_results
 
     # If it finds no matches
     else:
-        return 'None'
+        return "None"
 
 
 def get_settings_dict() -> dict:
@@ -64,17 +51,12 @@ def get_settings_dict() -> dict:
 
         Return:
             (dict): Resultant dictionary
-        
         """
+
         # For each item in the default dictionary
         for key, value in default_dict.items():
 
-            # Check to see if there is an entry in the settings dictionary
-            try:
-                settings_dict[key]
-
-            # Due to missing key, set value to default value
-            except:
+            if not key in settings_dict.keys():
                 settings_dict[key] = value
 
         return settings_dict
@@ -87,13 +69,9 @@ def get_settings_dict() -> dict:
     if settings_test:
         settings_dict = set_default_settings(load_json(settings_test), default_dict)
         
-        # Checks to see if -999 threshold exists
-        try:
-            settings_dict['thresholds']["-999"]
-
-        # If -999 didn't exist        
-        except:
-            settings_dict['thresholds']["-999"] = 0
+        # Sets -999 to 0 just so that it's guaranteed to hit a threshold
+        if not "-999" in settings_dict["thresholds"].keys():
+            settings_dict["thresholds"]["-999"] = 0
 
         return settings_dict
 
@@ -282,7 +260,7 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
 
     settings_dict (dict): Settings dictionary
     ch = character(): Character object
-    adv (int): Advantage = 1, normal = 0, disadvantage = -1 (default 0)
+    adv (int): Double Advantage = 2, Advantage = 1, normal = 0, disadvantage = -1 (default 0)
     bonus (str): Bonus to roll. (default "None")
     ignore_time (bool): Whether to bypass cooldown (default False)
 
@@ -315,6 +293,9 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
         elif adv == 1:
             dice = "2d20kh1"
 
+        elif adv == 2:
+            dice = "3d20kh1"
+
         # If disadvantage
         else:
             dice = "2d20kl1"
@@ -322,13 +303,12 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
         # Checks for the bard jack of trades
         if settings_dict['jack_of_trades'] == 1:
 
-            for (player_cls, level) in ch.levels:
-                if player_cls == "Bard" and level >= 2:
-                    if bonus == "None":
-                        bonus = floor(proficiencyBonus / 2)
+            if ch.levels.get("Bard") >= 2:
+                if bonus == "None":
+                    bonus = proficiencyBonus // 2
 
-                    else:
-                        bonus = f"{bonus} + {floor(proficiencyBonus / 2)}"
+                else:
+                    bonus = f"{bonus} + {proficiencyBonus // 2}"
 
         # If there is no bonus
         if bonus == "None":
@@ -410,10 +390,10 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
     if len(input_list) != 0:
 
         # If the first input is not -b, -i, adv, or dis
-        if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis']:
+        if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis', "eadv"]:
 
             if ch.cc_exists("Training"):
-                return ["You Have Been Sneak Attacked by an Error", "Training CC already exists"]
+                return "You Have Been Sneak Attacked by an Error", "Training CC already exists"
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -423,7 +403,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             
             # Parses arguments
             args = argparse(" ".join(input_list))
-            adv = args.adv()
+            adv = args.adv(eadv=True)
             bonus = args.last("b", default="None")
             ignore_time = args.last('i', default=False)
 
@@ -431,7 +411,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             results = setup_training_cc(train_target, settings_dict)
 
             if results[0] == 'Error':
-                return ["You Have Been Sneak Attacked by an Error", results[1]]
+                return "You Have Been Sneak Attacked by an Error", results[1]
 
         else:
 
@@ -444,7 +424,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
 
             # Parses arguments
             args = argparse(" ".join(input_list))
-            adv = args.adv()
+            adv = args.adv(eadv=True)
             bonus = args.last("b", default="None")
             ignore_time = args.last('i', default=False)
 
@@ -455,7 +435,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
 
         # If training cc doesn't exist
         if not ch.cc_exists("Training"):
-            return ["You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"]
+            return "You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"
 
         # If the training cc exists
         else:
@@ -497,19 +477,19 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         if desc_dict['bypass']:
             result_string.append('**`Cooldown timer bypassed`**')
 
-        return [f'{name} Training Session: {prof_name}', '\n'.join(result_string)]
+        return f'{name} Training Session: {prof_name}', '\n'.join(result_string)
 
     else:
-        return ["You Have Been Sneak Attacked by an Error", results[1]]
+        return "You Have Been Sneak Attacked by an Error", results[1]
 
 
-output_list = main(&ARGS&)
+title, f = main(&ARGS&)
 left_arrow = "<"
 dash = "-"
 
 
 </drac2>
--title "{{output_list[0]}}"
--f "{{output_list[1]}}"
+-title "{{title}}"
+-f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/21/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/22/25 | ShadowsStride"

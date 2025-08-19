@@ -20,9 +20,5 @@
     "herbalism kit": ["int", "wis"],
     "navigator's tools": ["int", "wis"],
     "poisoner's kit": ["int", "wis"],
-    "smith's tools": ["str", "dex"],
-    "cartographer's tools": ["dex", "int", "wis"],
-    "land vehicles": ["str", "dex", "wis", "int"],
-    "water vehicles": ["str", "dex", "wis", "int", "cha"],
-    "space vehicles": ["str", "dex", "wis", "int", "cha"]
+    "smith's tools": ["str", "dex"]
 }

@@ -2,7 +2,7 @@ Training alias that allows players to train in various proficiencies. Allows for
 
 This does require cvar `subclass` to contain `Fey Wanderer`, otherwise the bonus will need to be manually done.
 
-## Settings
+# Settings
 - [Settings](#settings)
   - [Settings Dictionary Variable](#settings-dictionary-variable)
   - [Tool Settings Dictionary](#tool-settings-dictionary)
@@ -12,11 +12,11 @@ This does require cvar `subclass` to contain `Fey Wanderer`, otherwise the bonus
   - [Gaming Set Settings Dictionary](#gaming-set-settings-dictionary)
   - [Skill Settings Dictionary (README)](#skill-settings-dictionary-readme)
   - [Armor Settings Dictionary (README)](#armor-settings-dictionary-readme)
-- [License Notice](#license-notice)
-- [Requests](#requests)
-- [Ko-fi](#ko-fi)
+  - [License Notice](#license-notice)
+  - [Requests](#requests)
+  - [Ko-fi](#ko-fi)
 
-### Settings Dictionary Variable
+## Settings Dictionary Variable
 The `training_settings` server variable uses a json to customize the settings with training. This is not required, instead it will use default values. Here are the following settings:
 
 - max_val: Integer that sets the max number of successes necessary - relevant ability score (i.e. 10 - CharismaMod (+3) = 7 successes) Default: 10
@@ -40,7 +40,7 @@ The `training_settings` server variable uses a json to customize the settings wi
 [Example Dictionary](https://github.com/Shadow-Draconic-Development/Avrae-Training-Manager/blob/main/Data/dictionary%20examples/settings.json)
 
 
-### Tool Settings Dictionary
+## Tool Settings Dictionary
 This server variable uses a json to determine what tool proficiencies can be learned and what ability scores are used for each. Within the `tool_dict` svar, any tools left out of the svar will become tools that players are not allowed to learn through the training alias.
 
 If you do not have the `tool_dict` svar created, it will default to the below settings:
@@ -53,7 +53,7 @@ If you do not have the `tool_dict` svar created, it will default to the below se
 |     Brewer's Supplies     |            |             |        X       |     X    |      X     |
 |  Calligrapher's Supplies  |            |      X      |        X       |          |      X     |
 |     Carpenter's Tools     |      X     |      X      |        X       |     X    |            |
-|    Cartographer's Tools   |            |             |        X       |     X    |            |
+|    Cartographer's Tools   |            |      X      |        X       |     X    |            |
 |      Cobbler's Tools      |      X     |      X      |        X       |     X    |      X     |
 |        Cook's Tools       |            |      X      |        X       |     X    |            |
 |    Glassblower's Tools    |            |      X      |        X       |          |            |
@@ -71,7 +71,7 @@ If you do not have the `tool_dict` svar created, it will default to the below se
 |       Water Vehicles      |      X     |      X      |        X       |     X    |      X     |
 |       Space Vehicles      |      X     |      X      |        X       |     X    |      X     |
 
-### Language Settings Dictionary
+## Language Settings Dictionary
 This server variable uses a json to determine what languages can be learned and what ability scores are used for each. Within the `lang_dict` svar, any languages left out of the svar will become languages that players are not allowed to learn through the training alias.
 
 If you do not have the `lang_dict` svar created, it will default to the below settings:
@@ -203,7 +203,7 @@ If you do not have the `lang_dict` svar created, it will default to the below se
 |        Zemnian       |       X      |    X   |     X    |
 |       Ziklight       |       X      |    X   |     X    |
 
-### Weapon Settings Dictionary
+## Weapon Settings Dictionary
 This server variable uses a json to determine what weapons can be learned and what ability scores are used for each. Within the `weapon_dict` svar, any weapons left out of the svar will become weapons that players are not allowed to learn through the training alias.
 
 If you do not have the `weapon_dict` svar created, it will default to the below settings:
@@ -250,7 +250,7 @@ If you do not have the `weapon_dict` svar created, it will default to the below 
 |     Longbow    |          |     X     |
 |       Net      |     X    |           |
 
-### Instrument Settings Dictionary
+## Instrument Settings Dictionary
 This server variable uses a json to determine what instruments can be learned and what ability scores are used for each. Within the `instrument_dict` svar, any instruments left out of the svar will become instruments that players are not allowed to learn through the training alias.
 
 If you do not have the `instrument_dict` svar created, it will default to the below settings:
@@ -282,7 +282,7 @@ If you do not have the `instrument_dict` svar created, it will default to the be
 |    Yarting    |          |     X     |              |              |        |     X    |
 |    Zulkoon    |          |           |       X      |              |        |     X    |
 
-### Gaming Set Settings Dictionary
+## Gaming Set Settings Dictionary
 This server variable uses a json to determine what gaming sets can be learned and what ability scores are used for each. Within the `gaming_dict` svar, any gaming sets left out of the svar will become gaming sets that players are not allowed to learn through the training alias.
 
 If you do not have the `gaming_dict` svar created, it will default to the below settings:
@@ -296,15 +296,15 @@ If you do not have the `gaming_dict` svar created, it will default to the below 
 |    Playing Card Set   |     X     |       X      |    X   |     X    |
 | Three-dragon Ante Set |           |       X      |    X   |     X    |
 
-### Skill Settings Dictionary (README)
+## Skill Settings Dictionary (README)
 This server variable uses a json to determine what skills can be learned. This is **NOT** RAW. 
 
 If you do not have the `skill_dict` svar created, it will be (by default) turned off.
 
 [Dictionary Example](https://github.com/Shadow-Draconic-Development/Avrae-Training-Manager/blob/main/Data/dictionary%20examples/skills.json)
 
-### Armor Settings Dictionary (README)
-This server variable uses a json to determine what skills can be learned. This is **NOT** RAW. 
+## Armor Settings Dictionary (README)
+This server variable uses a json to determine what armor can be learned. This is **NOT** RAW. 
 
 If you do not have the `armor_dict` svar created, it will be (by default) turned off.
 

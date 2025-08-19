@@ -12,9 +12,9 @@ This does require cvar `subclass` to contain `Fey Wanderer`, otherwise the bonus
   - [Gaming Set Settings Dictionary](#gaming-set-settings-dictionary)
   - [Skill Settings Dictionary (README)](#skill-settings-dictionary-readme)
   - [Armor Settings Dictionary (README)](#armor-settings-dictionary-readme)
-  - [License Notice](#license-notice)
-  - [Requests](#requests)
-  - [Ko-fi](#ko-fi)
+ - [License Notice](#license-notice)
+ - [Requests](#requests)
+ - [Ko-fi](#ko-fi)
 
 ## Settings Dictionary Variable
 The `training_settings` server variable uses a json to customize the settings with training. This is not required, instead it will use default values. Here are the following settings:

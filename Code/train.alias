@@ -393,7 +393,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis', "eadv"]:
 
             if ch.cc_exists("Training"):
-                return "You Have Been Sneak Attacked by an Error", "Training CC already exists"
+                return "You Have Been Sneak Attacked by an Error", f"Training CC already exists (Try running `{ctx.prefix}train`)"
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -417,7 +417,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
 
             # If the training cc doesn't exist
             if not ch.cc_exists("Training"):
-                return ["You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"]
+                return "You Have Been Sneak Attacked by an Error", "Training CC doesn't exist"
 
             # Grabs settings dictionary
             settings_dict = get_settings_dict()
@@ -492,4 +492,4 @@ dash = "-"
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 7/22/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 9/5/25 | ShadowsStride"

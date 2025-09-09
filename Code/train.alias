@@ -390,7 +390,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
     if len(input_list) != 0:
 
         # If the first input is not -b, -i, adv, or dis
-        if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis', "eadv"]:
+        if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis', "eadv", "guidance"]:
 
             if ch.cc_exists("Training"):
                 return "You Have Been Sneak Attacked by an Error", f"Training CC already exists (Try running `{ctx.prefix}train`)"
@@ -404,8 +404,20 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             # Parses arguments
             args = argparse(" ".join(input_list))
             adv = args.adv(eadv=True)
+            guidance = args.last("guidance", default=None)
             bonus = args.last("b", default="None")
             ignore_time = args.last('i', default=False)
+
+            # If guidance
+            if guidance:
+
+                # If bonus
+                if bonus != "None":
+                    bonus = bonus + "+1d4"
+
+                # If no bonus
+                else:
+                    bonus = "1d4"
 
             # Sets up the training cc
             results = setup_training_cc(train_target, settings_dict)
@@ -425,8 +437,20 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             # Parses arguments
             args = argparse(" ".join(input_list))
             adv = args.adv(eadv=True)
+            guidance = args.last("guidance", default=None)
             bonus = args.last("b", default="None")
             ignore_time = args.last('i', default=False)
+
+            # If guidance
+            if guidance:
+
+                # If bonus
+                if bonus != "None":
+                    bonus = bonus + "+1d4"
+
+                # If no bonus
+                else:
+                    bonus = "1d4"
 
         # Runs training sessions
         results = run_training_session(settings_dict, adv=adv, bonus=bonus, ignore_time=ignore_time)
@@ -492,4 +516,4 @@ dash = "-"
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 9/5/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 9/8/25 | ShadowsStride"

@@ -16,7 +16,7 @@ result_string.append("")
 # Help/main
 result_string.append(f"`{prefix}train help`: This subalias")
 result_string.append(f"`{prefix}train <prof_name> <-b> <adv/dis> <-i>`: Starts/continues training counter.")
-result_string.append("`prof_name`: If the training has not started prof_name is required. If continuing training you do not add it")
+result_string.append("`prof_name`: If the training has not started `prof_name` is required. If continuing training you do not add it")
 result_string.append("`-b`: Adds bonus to check")
 result_string.append("`-i`: Ignores training cooldown (DO NOT USE EXCEPT WHEN TOLD BY AN ADMIN)")
 result_string.append("`adv`/`dis`/`eadv`: Applies advantage/disadvantage/double advantage")
@@ -28,13 +28,13 @@ result_string.append(f"`{prefix}train restore`: Restores Training CC so that you
 result_string.append("")
 
 # List/Log
-result_string.append(f"`{prefix}train list: Lists available proficiencies to be trained in")
+result_string.append(f"`{prefix}train list`: Lists available proficiencies to be trained in")
 result_string.append(f"`{prefix}train log`: Checks training progress (also gives proficiency name)")
 result_string.append("")
 
 
 </drac2>
 -title "{{f"is Needing Some Help"}}"
--f "{{string}}"
+-f "{{"\n".join(result_string)}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{prefix}}train help | 7/22/25 | ShadowsStride" 
+-footer "{{prefix}}train help | 10/26/25 | ShadowsStride" 

@@ -7,15 +7,16 @@ embed
 # *******************************************************
 
 
-def main(ch=character()) -> list[str]:
+def main(ch: AliasCharacter) -> list[str]:
     """
     Main program function
 
     Args:
-        ch = character(): Character object
+        ch (AliasCharacter): Character object
 
     Return:
-        (list[str]): Result
+        str: Title
+        str: Main body paragraph
     """
 
     # Checks to see if training cc exists
@@ -24,26 +25,26 @@ def main(ch=character()) -> list[str]:
         counter = ch.cc("Training")
 
         # checks to see if there is a training dictionary
-        settings_test = get_svar('training_settings', default="None")
+        settings_test = get_svar("training_settings", default="None")
 
         # If it exists
         if settings_test != "None":
             settings_dict = load_json(settings_test)
 
             try:
-                settings_dict['time_cooldown']
+                settings_dict["time_cooldown"]
 
             except:
-                settings_dict['time_cooldown'] = 561600
+                settings_dict["time_cooldown"] = 561600
         
         # If it does not exist
         else:
             settings_dict = dict()
-            settings_dict['time_cooldown'] = 561600
+            settings_dict["time_cooldown"] = 561600
 
         # Capitalizes proficiency
         desc_dict = load_json(counter.desc)
-        prof_name = desc_dict['prof']
+        prof_name = desc_dict["prof"]
         prof_name_list_temp = prof_name.split(" ")
         prof_name_list = []
         for prof_name in prof_name_list_temp:
@@ -51,7 +52,7 @@ def main(ch=character()) -> list[str]:
         prof_name = " ".join(prof_name_list)
 
         # Results
-        result_string = [ch.cc_str('Training')]
+        result_string = [ch.cc_str("Training")]
         result_string.append(f"Next training session: <t:{desc_dict['time'] + settings_dict['time_cooldown']}:f>")
         result_string.append(f"{counter.value}/{counter.max}")
 
@@ -60,20 +61,25 @@ def main(ch=character()) -> list[str]:
             result_string.append(f"You have finished your training for {prof_name}! Run `{ctx.prefix}train clear` to clear your cc!")
 
         # If cooldown has been bypassed
-        if desc_dict['bypass']:
-            result_string.append('**`Previous training session bypassed cooldown timer`**')
+        if desc_dict["bypass"]:
+            result_string.append("**`Previous training session bypassed cooldown timer`**")
         
-        return f'{name} Checks Their Training Progress With {prof_name}', "\n".join(result_string)
+        return f"{name} Checks Their Training Progress With {prof_name}", "\n".join(result_string)
 
     else:
-        return "You Have Been Sneak Attacked by an Error", 'Training CC does not exist'
+        return "You Have Been Sneak Attacked by an Error", "Training CC does not exist"
 
 
-title, f = main()
+# Character object
+ch = character()
+
+# Main program function
+title, f = main(ch)
 
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train log | 7/22/2025 | ShadowsStride"
+-footer "{{ctx.prefix}}train log | 11/21/2025 | ShadowsStride"
+-color "{{color}}"

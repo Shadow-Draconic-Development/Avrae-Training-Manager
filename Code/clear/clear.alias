@@ -7,28 +7,35 @@ embed
 # *******************************************************
 
 
-def main(ch = character()) -> list[str]:
+def main(ch: AliasCharacter) -> tuple[str]:
     """
     Main program function
+
+    Args:
+        ch (AliasCharacter): Character object
+
+    Return:
+        str: Title
+        str: Main body paragraph
     
     """
 
     # If the training cc exists
-    if ch.cc_exists('Training'):
+    if ch.cc_exists("Training"):
 
         # Creates back up cvar
         cc_detail_dict = dict()
-        cc_detail_dict['maxVal'] = str(ch.cc('Training').max)
-        cc_detail_dict['dispType'] = ch.cc('Training').display_type
-        cc_detail_dict['title'] = ch.cc('Training').title
-        cc_detail_dict['desc'] = ch.cc('Training').desc
-        cc_detail_dict['initial_value'] = ch.cc('Training').value
+        cc_detail_dict["maxVal"] = str(ch.cc("Training").max)
+        cc_detail_dict["dispType"] = ch.cc("Training").display_type
+        cc_detail_dict["title"] = ch.cc("Training").title
+        cc_detail_dict["desc"] = ch.cc("Training").desc
+        cc_detail_dict["initial_value"] = ch.cc("Training").value
 
         ch.set_cvar("training_cc_backup", dump_json(cc_detail_dict))
 
         # Capitalize proficiency
-        desc_dict = load_json(ch.cc('Training').desc)
-        prof_name = desc_dict['prof']
+        desc_dict = load_json(ch.cc("Training").desc)
+        prof_name = desc_dict["prof"]
         prof_name_list_temp = prof_name.split(" ")
         prof_name_list = []
         for prof_name in prof_name_list_temp:
@@ -38,17 +45,21 @@ def main(ch = character()) -> list[str]:
         # Deletes cc
         ch.delete_cc("Training")
         
-        return f"{name} Clears Their {prof_name} Training Progress", f'Run `{ctx.prefix}train restore` to restore your CC if this was an accident'
+        return f"{name} Clears Their {prof_name} Training Progress", f"Run `{ctx.prefix}train restore` to restore your CC if this was an accident"
 
     else:
         return "You Have Been Sneak Attacked by an Error", "Training CC does not exist"
 
+# Character object
+ch = character()
 
-title, f = main()
+# Main program function
+title, f = main(ch)
 
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train clear | 7/22/2025 | ShadowsStride"
+-footer "{{ctx.prefix}}train clear | 11/21/2025 | ShadowsStride"
+-color "{{color}}"

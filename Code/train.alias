@@ -21,7 +21,7 @@ def search_key(query: str, key_list: list[str]) -> list[str]|str:
         key_list (list): List of keys
 
     Return:
-        (str): If it finds it, it returns the key, otherwise it returns 'None'
+        (str): If it finds it, it returns the key, otherwise it returns "None"
     """
 
     # Finds at least 1 match
@@ -62,8 +62,8 @@ def get_settings_dict() -> dict:
         return settings_dict
 
     # Checks to see if the settings_svar exists
-    settings_test = get_svar('training_settings')
-    default_dict = {'max_val': 10, 'disp_type': 'star', 'jack_of_trades': 1, 'time_cooldown': 561600, 'thresholds': {"-999": 0, "10": 1, "20": 2}}
+    settings_test = get_svar("training_settings")
+    default_dict = {"max_val": 10, "disp_type": "star", "jack_of_trades": 1, "time_cooldown": 561600, "thresholds": {"-999": 0, "10": 1, "20": 2}}
     
     # If settings dict exists, set missing values to default values
     if settings_test:
@@ -151,13 +151,13 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
     return full_dict
 
 
-def find_highest_stat(stat_list: list, ch = character()) -> list[str, int]:
+def find_highest_stat(stat_list: list, ch: AliasCharacter) -> list[str, int]:
     """
     Finds the highest ability mod that is relavant
     
     Args:
         stat_list (list): List of relavant abilities
-        ch = character(): Character object
+        ch (AliasCharacter): Character object
 
     Return:
         (int): Ability mod
@@ -190,14 +190,14 @@ def find_highest_stat(stat_list: list, ch = character()) -> list[str, int]:
     return [max_skill, max_mod]
 
 
-def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> list[str]:
+def setup_training_cc(target: str, settings_dict: dict, ch) -> list[str]:
     """
     Sets up the training CC
     
     Args:
         target (str): Target training name
         settings_dict (dict): Settings dictionary (svar)
-        ch = character(): Character object
+        ch (AliasCharacter): Character object
 
     Return:
         (list[str]): Result
@@ -233,7 +233,7 @@ def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> lis
 
     # If it does not find a proficiency
     else:
-        return ['Error', 'Proficiency not found!']
+        return ["Error", "Proficiency not found!"]
 
     
     desc_dict = {"time": 0, "prof": target}
@@ -242,24 +242,24 @@ def setup_training_cc(target: str, settings_dict: dict, ch = character()) -> lis
     ch.create_cc(
         name="Training", 
         minVal="0", 
-        maxVal=str(settings_dict['max_val'] - find_highest_stat(full_dict[target])[1]), 
+        maxVal=str(settings_dict["max_val"] - find_highest_stat(full_dict[target], ch)[1]), 
         reset=None, 
-        dispType=settings_dict['disp_type'], 
+        dispType=settings_dict["disp_type"], 
         reset_to="0", 
         title=f"{name}'s training ({target})", 
         desc=dump_json(desc_dict), 
         initial_value=0
         )
 
-    return ['Success']
+    return ["Success"]
 
 
-def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: str = "None", ignore_time: bool = False) -> list[str]:
+def run_training_session(settings_dict: dict, ch: AliasCharacter, adv: int = 0, bonus: str = "None", ignore_time: bool = False) -> list[str]:
     """
     Runs a training session
 
     settings_dict (dict): Settings dictionary
-    ch = character(): Character object
+    ch (AliasCharacter): Character object
     adv (int): Double Advantage = 2, Advantage = 1, normal = 0, disadvantage = -1 (default 0)
     bonus (str): Bonus to roll. (default "None")
     ignore_time (bool): Whether to bypass cooldown (default False)
@@ -280,10 +280,10 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
     current_time = int(round(time(), 0))
 
     # Grabs appropriate ability mod and name
-    result_list = find_highest_stat(full_dict[desc_dict['prof']])
+    result_list = find_highest_stat(full_dict[desc_dict["prof"]], ch)
 
     # If it is run at the appropriate timeframe (or that is ignored)
-    if (current_time >= desc_dict['time'] + settings_dict['time_cooldown']) or ignore_time:
+    if (current_time >= desc_dict["time"] + settings_dict["time_cooldown"]) or ignore_time:
 
         # If no advantage/disadvantage
         if adv == 0:
@@ -301,7 +301,7 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
             dice = "2d20kl1"
 
         # Checks for the bard jack of trades
-        if settings_dict['jack_of_trades'] == 1:
+        if settings_dict["jack_of_trades"] == 1:
 
             if ch.levels.get("Bard") >= 2:
                 if bonus == "None":
@@ -319,30 +319,30 @@ def run_training_session(settings_dict, ch = character(), adv: int = 0, bonus: s
             roll_check = vroll(f"{dice} + {bonus} + {result_list[1]}")
 
         # Figures out how much the counter is increased by
-        for key in settings_dict['thresholds'].keys():
+        for key in settings_dict["thresholds"].keys():
             if roll_check.result.total >= int(key):
-                mod_num = settings_dict['thresholds'][key]
+                mod_num = settings_dict["thresholds"][key]
 
         # Increases counter
         counter.mod(mod_num)
 
         # If time was not ignored
         if not ignore_time:
-            desc_dict['time'] = current_time
-            desc_dict['bypass'] = False
+            desc_dict["time"] = current_time
+            desc_dict["bypass"] = False
 
         # If time was ignored
         else:
-            desc_dict['bypass'] = True
+            desc_dict["bypass"] = True
 
         # Edits the cc
-        ch.edit_cc("Training", minVal="0", maxVal=str(settings_dict['max_val'] - result_list[1]), desc=dump_json(desc_dict), dispType=settings_dict['disp_type'])
+        ch.edit_cc("Training", minVal="0", maxVal=str(settings_dict["max_val"] - result_list[1]), desc=dump_json(desc_dict), dispType=settings_dict["disp_type"])
     
-        return ['Success', roll_check, mod_num, result_list[0]]
+        return ["Success", roll_check, mod_num, result_list[0]]
 
     # If time was not skipped and time cooldown has not been met
     else:
-        return ['Error', f"You have until <t:{desc_dict['time'] + settings_dict['time_cooldown']}:f> before you can train again"]
+        return ["Error", f"You have until <t:{desc_dict['time'] + settings_dict['time_cooldown']}:f> before you can train again"]
 
 
 def threshold_string(threshold_dict: dict) -> str:
@@ -374,13 +374,13 @@ def threshold_string(threshold_dict: dict) -> str:
     return "\n".join(string_list)
 
 
-def main(input_list: list[str] = [], ch=character()) -> list[str]:
+def main(input_list: list[str], ch: AliasCharacter) -> list[str]:
     """
     Main program function
     
     Args:
-        input_list (list[str]): List if inputs (default [])
-        ch=character(): Character object
+        input_list (list[str]): List of user inputs
+        ch (AliasCharacter): Character object
 
     Return:
         (list[str]): Result
@@ -390,7 +390,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
     if len(input_list) != 0:
 
         # If the first input is not -b, -i, adv, or dis
-        if input_list[0].lower() not in ['-b', '-i', 'adv', 'dis', "eadv", "guidance"]:
+        if input_list[0].lower() not in ["-b", "-i", "adv", "dis", "eadv", "guidance"]:
 
             if ch.cc_exists("Training"):
                 return "You Have Been Sneak Attacked by an Error", f"Training CC already exists (Try running `{ctx.prefix}train`)"
@@ -406,7 +406,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             adv = args.adv(eadv=True)
             guidance = args.last("guidance", default=None)
             bonus = args.last("b", default="None")
-            ignore_time = args.last('i', default=False)
+            ignore_time = args.last("i", default=False)
 
             # If guidance
             if guidance:
@@ -420,9 +420,9 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
                     bonus = "1d4"
 
             # Sets up the training cc
-            results = setup_training_cc(train_target, settings_dict)
+            results = setup_training_cc(train_target, settings_dict, ch)
 
-            if results[0] == 'Error':
+            if results[0] == "Error":
                 return "You Have Been Sneak Attacked by an Error", results[1]
 
         else:
@@ -439,7 +439,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             adv = args.adv(eadv=True)
             guidance = args.last("guidance", default=None)
             bonus = args.last("b", default="None")
-            ignore_time = args.last('i', default=False)
+            ignore_time = args.last("i", default=False)
 
             # If guidance
             if guidance:
@@ -453,7 +453,7 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
                     bonus = "1d4"
 
         # Runs training sessions
-        results = run_training_session(settings_dict, adv=adv, bonus=bonus, ignore_time=ignore_time)
+        results = run_training_session(settings_dict, ch, adv=adv, bonus=bonus, ignore_time=ignore_time)
 
     else:
 
@@ -466,18 +466,18 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             settings_dict = get_settings_dict()
 
             # Runs training session
-            results = run_training_session(settings_dict)
+            results = run_training_session(settings_dict, ch)
 
     # if there was no error
     if results[0] != "Error":
 
-        counter = ch.cc('Training')
+        counter = ch.cc("Training")
 
         # Loads description 
         desc_dict = load_json(counter.desc)
 
         # Capitalizes proficiency
-        prof_name = desc_dict['prof']
+        prof_name = desc_dict["prof"]
         prof_name_list_temp = prof_name.split(" ")
         prof_name_list = []
         for prof_name in prof_name_list_temp:
@@ -487,9 +487,9 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         ability_dict = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
 
         # Results
-        result_string = [f"**{ability_dict[results[3]]}**\n", threshold_string(settings_dict['thresholds'])]
+        result_string = [f"**{ability_dict[results[3]]}**\n", threshold_string(settings_dict["thresholds"])]
         result_string.append(f"{str(results[1])}\n ")
-        result_string.append(ch.cc_str('Training'))
+        result_string.append(ch.cc_str("Training"))
         result_string.append(f"{counter.value}/{counter.max}  (+{results[2]})")
         result_string.append(f"Next training session: <t:{desc_dict['time'] + settings_dict['time_cooldown']}:f>")
 
@@ -498,8 +498,8 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
             result_string.append(f"You have finished your training for {prof_name}! Run `{ctx.prefix}train clear` and come again next time!")
 
         # If cooldown was bypassed
-        if desc_dict['bypass']:
-            result_string.append('**`Cooldown timer bypassed`**')
+        if desc_dict["bypass"]:
+            result_string.append("**`Cooldown timer bypassed`**")
 
         return f'{name} Training Session: {prof_name}', '\n'.join(result_string)
 
@@ -507,13 +507,19 @@ def main(input_list: list[str] = [], ch=character()) -> list[str]:
         return "You Have Been Sneak Attacked by an Error", results[1]
 
 
-title, f = main(&ARGS&)
+# Character object
+ch = character()
+
+# Main function
+title, f = main(&ARGS&, ch)
+
+# Avrae is stupid and so I have to have these
 left_arrow = "<"
 dash = "-"
-
 
 </drac2>
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 9/8/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 11/21/25 | ShadowsStride"
+-color "{{color}}"

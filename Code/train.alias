@@ -12,25 +12,47 @@ embed
 # *******************************************************
 
 
-def search_key(query: str, key_list: list[str]) -> list[str]|str:
+def search_list(query: str, item_list: list[str]) -> list[str]|None:
     """
-    Searches for dictionary key.
+    Searches for item in list.
 
     Args:
         query (str): The query being made
-        key_list (list): List of keys
+        item_list (list): List of items
 
     Return:
-        (str): If it finds it, it returns the key, otherwise it returns "None"
+        list[str]|None: If it finds at least one match, it returns the item(s) in a list, otherwise it returns None
     """
 
-    # Finds at least 1 match
-    if len(item_results := [item for item in key_list if query.lower() in item.lower()]) > 0:
-        return item_results
+    # Casefold query (so that number of total case folds is n+1)
+    query = query.casefold()
 
-    # If it finds no matches
-    else:
-        return "None"
+    # Finds at least 1 match
+    item_results = [item for item in item_list if query in item.casefold()]
+    return item_results or None
+
+
+def multiple_match_determine(search_result: list[str], target: str) -> str|None:
+    """
+    Determines if there is an exact match in search results
+    
+    Args:
+        search_result (list[str]): List of search results
+        target (str): Input value to match
+
+    Returns:
+        str|None: The exact match if found, otherwise None
+    """
+
+    # Casefold target (so that number of total case folds is n+1)
+    target = target.casefold()
+
+    # For each match in search result
+    for match in search_result:
+
+        # If exact match, return match
+        if match.casefold() == target:
+            return match
 
 
 def get_settings_dict() -> dict:
@@ -153,10 +175,10 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
 
 def find_highest_stat(stat_list: list, ch: AliasCharacter) -> list[str, int]:
     """
-    Finds the highest ability mod that is relavant
+    Finds the highest ability mod that is relevant
     
     Args:
-        stat_list (list): List of relavant abilities
+        stat_list (list): List of relevant abilities
         ch (AliasCharacter): Character object
 
     Return:
@@ -204,34 +226,28 @@ def setup_training_cc(target: str, settings_dict: dict, ch) -> list[str]:
     """
 
     full_dict = grab_tool_weapon_lang_skill_armor()
-    key_result = search_key(target, full_dict.keys())
 
     # If it finds at least one proficiency
-    if key_result != "None":
+    if (search_result := search_list(target, full_dict.keys())):
 
-        # If it find only one proficiency
-        if len(key_result) == 1:
-            target = key_result[0]
+        # If it finds exactly one proficiency
+        if len(search_result) == 1:
+            target = search_result[0]
 
         # If it finds more than one proficiency
         else:
 
+            # If it finds an exact match
+            if (search_result2 := multiple_match_determine(search_result, target)):
+                target = search_result2
 
-            found = False
+            # If it does not find an exact match
+            else:
+                search_result.insert(0, "**Multiple proficiencies found:**")
 
-            for key in key_result:
-                if target.lower() == key.lower():
+                return ["Error", "\n".join(search_result)]
 
-                    target = key
-                    found = True
-                    break
-                    
-            if not found:
-                key_result.insert(0, "**Multiple proficiencies found:**")
-
-                return ["Error", "\n".join(key_result)]
-
-    # If it does not find a proficiency
+    # If it finds no proficiency
     else:
         return ["Error", "Proficiency not found!"]
 
@@ -521,5 +537,5 @@ dash = "-"
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 11/21/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train {{left_arrow}}prof_name> {{left_arrow}}{{dash}}b> {{left_arrow}}adv/dis> | 3/21/26 | ShadowsStride"
 -color "{{color}}"

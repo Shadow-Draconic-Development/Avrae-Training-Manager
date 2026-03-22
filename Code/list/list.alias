@@ -66,50 +66,30 @@ def grab_tool_weapon_lang_skill_armor() -> dict:
     """
     
     # Setup
-    full_dict = dict()
+    full_dict = {}
     list_dicts = []
 
     # Thank you genesisest for putting these dictionaries together
 
     # Tool dictionary
     # Default: No SVAR, load default
-    if not (tool_test := get_svar("tool_dict")):
-        list_dicts.append(load_json(get_gvar("faab1e01-0a17-4f80-92be-cca4cb0c8890")))
-
-    else:
-        list_dicts.append(load_json(tool_test))
+    list_dicts.append(load_json(get_svar("tool_dict", default=get_gvar("faab1e01-0a17-4f80-92be-cca4cb0c8890"))))
 
     # Language dictionary
     # Default: No SVAR, load default
-    if not (lang_test := get_svar("lang_dict")):
-        list_dicts.append(load_json(get_gvar("8ed3dad0-b961-4f5b-9e7c-cef0422fefa2")))
-
-    else:
-        list_dicts.append(load_json(lang_test))
+    list_dicts.append(load_json(get_svar("lang_dict", default=get_gvar("8ed3dad0-b961-4f5b-9e7c-cef0422fefa2"))))
 
     # Weapon dictionary
     # Default: No SVAR, load default
-    if not (weapon_test := get_svar("weapon_dict")):
-        list_dicts.append(load_json(get_gvar("74458a56-53b4-47cb-b36f-246fc83e90b1")))
-
-    else:
-        list_dicts.append(load_json(weapon_test))
+    list_dicts.append(load_json(get_svar("weapon_dict", default=get_gvar("74458a56-53b4-47cb-b36f-246fc83e90b1"))))
 
     # Instrument dictionary
     # Default: No SVAR, load default
-    if not (instrument_test := get_svar("instrument_dict")):
-        list_dicts.append(load_json(get_gvar("0179ef16-947e-402d-b6c4-0da4c16c4180")))
-
-    else:
-        list_dicts.append(load_json(instrument_test))
+    list_dicts.append(load_json(get_svar("instrument_dict", default=get_gvar("0179ef16-947e-402d-b6c4-0da4c16c4180"))))
 
     # Gaming set dictionary
     # Default: No SVAR, load default
-    if not (game_test := get_svar("gaming_dict")):
-        list_dicts.append(load_json(get_gvar("d06c529f-128e-4f4a-9d58-3cb78c59c87a")))
-
-    else:
-        list_dicts.append(load_json(game_test))
+    list_dicts.append(load_json(get_svar("gaming_dict", default=get_gvar("d06c529f-128e-4f4a-9d58-3cb78c59c87a"))))
 
     # Skill dictionary
     # Default: No SVAR, no default
@@ -192,5 +172,5 @@ left_arrow = "<"
 -title "{{title}}"
 -f "{{f}}"
 -thumb "https://raw.githubusercontent.com/Shadow-Draconic-Development/Avrae-Training-Manager/refs/heads/main/Data/image.png"
--footer "{{ctx.prefix}}train list {{left_arrow}}name> {{left_arrow}}#> | 11/22/25 | ShadowsStride"
+-footer "{{ctx.prefix}}train list {{left_arrow}}name> {{left_arrow}}#> | 3/21/25 | ShadowsStride"
 -color "{{color}}"
